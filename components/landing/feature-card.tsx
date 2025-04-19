@@ -1,7 +1,8 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { useState } from 'react';
 
 interface FeatureCardProps {
@@ -41,11 +42,13 @@ export function FeatureCard({ title, color, imageSrc }: FeatureCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <CardHeader className="p-0">
-        <div className="w-full h-48 overflow-hidden">
-          <img
+        <div className="relative w-full h-48 overflow-hidden">
+          <Image
             src={imageSrc}
             alt={title}
-            className="w-full h-full object-cover object-center"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
           />
         </div>
       </CardHeader>

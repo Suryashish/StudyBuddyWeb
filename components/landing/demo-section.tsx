@@ -28,7 +28,7 @@ export function DemoSection() {
             
             <div className="mt-8">
               <img
-                src="/placeholder-student-walking.png"
+                src="/landingimages/Transhumans - Mask 1.svg"
                 alt="Student walking"
                 className="max-w-xs mx-auto lg:mx-0"
               />
@@ -43,13 +43,35 @@ export function DemoSection() {
             )}
             onClick={handlePlayClick}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-2xl font-bold text-background">
-                <h3 className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-600">
-                  HOW TO MAKE AN ANIMATED EXPLAINER VIDEO
-                </h3>
-              </div>
-            </div>
+
+            {/* Content based on playing state */}
+            {isPlaying ? (
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/9kuynHcM3UA?si=J6BHtynCH2J3XzjD&autoplay=1" // Added autoplay=1 to start playing on render
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              // Ensure iframe fills the container and is visible
+              className="absolute inset-0 w-full h-full z-10" 
+            ></iframe>
+            ) : (
+            <>
+              {/* Placeholder/Overlay shown when not playing */}
+              {/* Optional: Add a thumbnail image here */}
+              {/* <img src="/path/to/thumbnail.jpg" alt="Video Thumbnail" className="absolute inset-0 w-full h-full object-cover" /> */}
+              
+              {/* Dark overlay - shown only when not playing */}
+              <div className="absolute inset-0 bg-black/30 transition-opacity duration-300 group-hover:opacity-75"></div> 
+              
+              {/* Play Button - Centered, shown only when not playing */}
+              {/* This button is now rendered by the code outside the selection, so it's removed from here */}
+            </>
+            )}
+            {/* The play button is handled by the div outside this conditional logic */}
             
             <div className="absolute inset-0 flex items-center justify-center">
               <Button 

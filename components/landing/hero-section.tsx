@@ -34,7 +34,7 @@ export function HeroSection() {
           <div className="flex-1 flex justify-center lg:justify-end w-full max-w-xl">
             <div className="relative w-full aspect-square max-w-md">
               <Image
-                src="/placeholder-student-reading.png"
+                src="/landingimages/Transhumans - Growth 1.svg"
                 alt="Student reading"
                 width={500}
                 height={500}

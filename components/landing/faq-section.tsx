@@ -57,7 +57,7 @@ export function FaqSection() {
 
           <div className="hidden lg:block">
             <img
-              src="/placeholder-students-discussing.png"
+              src="/landingimages/Transhumans - Experiments 1.svg"
               alt="Students discussing"
               className="max-w-md ml-auto"
             />

@@ -4,27 +4,27 @@ const features = [
   {
     title: 'AI-Powered Learning Engine',
     color: 'purple',
-    imageSrc: 'https://via.placeholder.com/400x300/4B0082/FFFFFF?text=AI+Learning',
+    imageSrc: '/landingimages/Group 1.svg',
   },
   {
     title: 'Dynamic Study Scheduler',
     color: 'yellow',
-    imageSrc: 'https://via.placeholder.com/400x300/FFA500/FFFFFF?text=Study+Scheduler',
+    imageSrc: '/landingimages/Group 1.svg',
   },
   {
     title: 'Interactive Topic Visualizer',
     color: 'blue',
-    imageSrc: 'https://via.placeholder.com/400x300/0000FF/FFFFFF?text=Topic+Visualizer',
+    imageSrc: '/landingimages/Group 1.svg',
   },
   {
     title: 'Personalized Revision Suggestions',
     color: 'black',
-    imageSrc: 'https://via.placeholder.com/400x300/000000/FFFFFF?text=Revision+Suggestions',
+    imageSrc: '/landingimages/Group 1.svg',
   },
   {
     title: 'Performance Analytics Dashboard',
     color: 'orange',
-    imageSrc: 'https://via.placeholder.com/400x300/FF4500/FFFFFF?text=Analytics+Dashboard',
+    imageSrc: '/landingimages/Group 1.svg',
   },
 ];
 
@@ -48,7 +48,7 @@ export function FeaturesSection() {
         {/* Runner illustration on the side */}
         <div className="hidden lg:block absolute right-0 bottom-0 transform translate-x-1/4">
           <img
-            src="/placeholder-runner.png"
+            src="/landingimages/Transhumans - Coffee 1.svg"
             alt="Student running"
             className="w-72 h-auto"
           />

@@ -6,6 +6,7 @@ import { GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 const navLinks = [
   { name: 'Plans', href: '#' },
@@ -17,6 +18,7 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,11 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSignInClick = () => {
+    console.log("clicked...")
+    router.push('/sign-in'); // Navigate to the sign-in page
+  };
 
   return (
     <header
@@ -60,9 +67,10 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
-            {/* <Button variant="ghost"> */}
-              <Button variant="ghost"><Link href="/sign-in">Sign in</Link></Button>
-              {/* </Button> */}
+            <Button variant="ghost" onClick={handleSignInClick}>
+              {/*Remove Link tag here to avoid next.js hydration mismatch error*/}
+              Sign in
+            </Button>
             <Button>Login</Button>
           </div>
 
@@ -117,7 +125,7 @@ export function Navbar() {
               </Link>
             ))}
             <div className="flex flex-col space-y-2 pt-2">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full" onClick={handleSignInClick}>
                 Sign in
               </Button>
               <Button className="w-full">Login</Button>

@@ -31,33 +31,44 @@ const TopicDetailPanel: React.FC<TopicDetailPanelProps> = ({
       generateContent();
     }
   }, [isOpen, nodeData]);
-  
-  const generateContent = async () => {
+    const generateContent = async () => {
     if (!nodeData) return;
+    
+    // If content already exists in the node data, use it
+    if (nodeData.content) {
+      if (nodeData.content.videoId) {
+        setVideoId(nodeData.content.videoId);
+      }
+      
+      if (nodeData.content.description) {
+        setDescription(nodeData.content.description);
+        setLoading(false);
+        return;
+      }
+    }
     
     setLoading(true);
     try {
-      // In a real implementation, this would call your Groq AI backend
-      // For now, we'll use mock data based on the node label
+      // Call the API to generate content for this topic
+      const response = await fetch('/api/generate-topic-content', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ topic: nodeData.label })
+      });
       
-      // Mock video recommendation
-      const mockVideos = {
-        "Data Structures": "fObAQbYCjNU",
-        "Arrays": "W2MfQ5Y_LHc",
-        "Linked Lists": "A5_XdiK4J8A",
-        "Algorithms": "A3ZUpyrnCbM",
-        "Sorting": "Hoixgm4-P4M",
-        "Calculus": "Qb-kbg_T9dA",
-        "Limits": "riXcZT0VBNM",
-      };
+      if (!response.ok) {
+        throw new Error('Failed to generate content');
+      }
       
-      // Find a matching video ID or use a default one
-      const topicName = nodeData.label;
-      const video = mockVideos[topicName as keyof typeof mockVideos] || "9QTXnkLxIGE";
-      setVideoId(video);
+      const data = await response.json();
       
-      // Generate mock description
-      const mockDescription = `
+      // Use the generated content or fallback to default values
+      const videoId = data.videoId || "9QTXnkLxIGE";
+      setVideoId(videoId);
+        // Generate description from the data
+      const generatedDescription = data.description || `
 # ${nodeData.label}
 
 ## Overview
@@ -78,10 +89,11 @@ Understanding this topic thoroughly will help you build a strong foundation.
 
 This topic connects with several other areas in your syllabus, so mastering it will help you understand many related concepts.
       `;
-      
-      setDescription(mockDescription);
+        setDescription(generatedDescription);
     } catch (error) {
       console.error("Error generating content:", error);
+      // Fallback to a basic description if API call fails
+      setDescription(`# ${nodeData.label}\n\nDetails for this topic will be available soon.`);
     } finally {
       setLoading(false);
     }

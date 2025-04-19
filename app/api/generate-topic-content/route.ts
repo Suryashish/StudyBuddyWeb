@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import Groq from "groq-sdk";
 
-// This is a mock implementation. In a real-world application, 
-// you would integrate with an actual AI API like OpenAI or Groq.
+// Initialize Groq client
+const groq = new Groq({ 
+  apiKey: process.env.GROQ_API_KEY 
+});
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -14,11 +18,15 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Simulate AI processing time
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    if (!process.env.GROQ_API_KEY) {
+      console.warn('GROQ_API_KEY not found, falling back to mock data');
+      // Fall back to mock data if API key is not configured
+      const mockResult = generateMockContent(topic);
+      return NextResponse.json(mockResult);
+    }
     
-    // Generate mock subtopics and content based on the topic
-    const result = generateMockContent(topic);
+    // Generate AI content using Groq
+    const result = await generateGroqContent(topic);
     
     return NextResponse.json(result);
   } catch (error) {
@@ -82,4 +90,72 @@ function generateMockContent(topic: string) {
       { type: 'course', title: 'Mastering ' + topic, url: '#' }
     ]
   };
+}
+
+async function generateGroqContent(topic: string) {
+  const capitalizedTopic = topic.charAt(0).toUpperCase() + topic.slice(1);
+  
+  // Create the system prompt for structured topic content
+  const systemPrompt = `
+  Generate a comprehensive, structured study guide for "${topic}". The response should be formatted as a JSON object with the following structure:
+  {
+    "id": "unique-id-for-topic",
+    "name": "Topic Name",
+    "description": "A brief description of the topic",
+    "content": "Detailed explanation of the topic",
+    "subtopics": [
+      {
+        "id": "unique-id-for-subtopic",
+        "name": "Subtopic Name",
+        "description": "Brief description of subtopic",
+        "content": "Detailed explanation of this subtopic",
+        "subtopics": [
+          {
+            "id": "unique-id-for-nested-subtopic",
+            "name": "Nested Subtopic Name",
+            "description": "Brief description of nested subtopic",
+            "content": "Detailed explanation of this nested subtopic",
+            "resources": [
+              {
+                "type": "article|video|book|course",
+                "title": "Resource Title",
+                "url": "#"
+              }
+            ]
+          }
+        ],
+        "resources": [Array of resources like above]
+      }
+    ],
+    "resources": [Array of resources like above]
+  }
+  
+  Please generate 4-5 main subtopics, each with 2-3 nested subtopics. Make the content educational, informative and accurate.
+  `;
+  
+  try {
+    // Make the API call to Groq
+    const completion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: systemPrompt
+        },
+        {
+          role: "user",
+          content: `Please generate a structured study guide for "${topic}" following the specified JSON format.`
+        }
+      ],
+      model: "llama-3.3-70b-versatile",
+      response_format: { type: "json_object" }
+    });
+    
+    // Extract and parse the content
+    const content = completion.choices[0]?.message?.content || "{}";
+    return JSON.parse(content);
+  } catch (error) {
+    console.error('Error calling Groq API:', error);
+    // Fall back to mock data if the API call fails
+    return generateMockContent(topic);
+  }
 }

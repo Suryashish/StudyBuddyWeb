@@ -1,3 +1,4 @@
+"use client";
 import { Sidebar } from '@/components/dashboard/sidebar'; // We'll create this next
 import { DashboardContent } from '@/components/dashboard/dashboard-content'; // And this one
 

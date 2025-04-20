@@ -14,7 +14,8 @@ import {
   BookMarked,
   LineChart,
   Cog,
-  DoorOpen
+  DoorOpen,
+  PenBoxIcon
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -23,10 +24,10 @@ import { Separator } from '@/components/ui/separator';
 // ... (navItems and minimalNavIcons definitions remain the same) ...
 const navItems = [
   { href: '#', label: 'Dashboard', icon: LayoutDashboard, active: true },
-  { href: '#', label: 'Study Planner', icon: CalendarCheck, active: false },
-  { href: '#', label: 'Learning Space', icon: BookOpenText, active: false },
-  { href: '#', label: 'Analytics', icon: BarChart3, active: false },
-  { href: '#', label: 'Settings', icon: Settings, active: false },
+  { href: '/blackboard-ai', label: 'Magic Board', icon: PenBoxIcon, active: false },
+  { href: '/noded', label: 'Node Visualization', icon: BookOpenText, active: false },
+  // { href: '#', label: 'Analytics', icon: BarChart3, active: false },
+  // { href: '#', label: 'Settings', icon: Settings, active: false },
 ];
 const minimalNavIcons = [
     { icon: Home },

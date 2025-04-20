@@ -63,7 +63,8 @@ export function Navbar() {
             {/* <Button variant="ghost"> */}
               <Button variant="ghost"><Link href="/sign-in">Sign in</Link></Button>
               {/* </Button> */}
-            <Button>Login</Button>
+            {/* <Button>Login</Button> */}
+            <Button variant="ghost"><Link href="/sign-up">Sign Up</Link></Button>
           </div>
 
           {/* Mobile menu button */}

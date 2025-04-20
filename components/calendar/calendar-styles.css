@@ -1,0 +1,126 @@
+/* Calendar light/dark mode theming */
+
+/* Light theme (default) */
+.calendar-light {
+  width: 100%;
+  max-width: 100%;
+  background-color: white;
+  color: #000;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.calendar-light .react-calendar__tile {
+  padding: 0.75em 0.5em;
+  position: relative;
+}
+
+.calendar-light .react-calendar__tile:enabled:hover,
+.calendar-light .react-calendar__tile:enabled:focus,
+.calendar-light .react-calendar__tile--active {
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+}
+
+.calendar-light .react-calendar__tile--now {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 0.25rem;
+}
+
+.calendar-light .react-calendar__tile--now:enabled:hover,
+.calendar-light .react-calendar__tile--now:enabled:focus {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Dark theme */
+.calendar-dark {
+  width: 100%;
+  max-width: 100%;
+  background-color: #1e1e2e;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.calendar-dark .react-calendar__navigation button {
+  color: #e2e8f0;
+}
+
+.calendar-dark .react-calendar__month-view__weekdays {
+  color: #94a3b8;
+}
+
+.calendar-dark .react-calendar__tile {
+  color: #e2e8f0;
+  padding: 0.75em 0.5em;
+  position: relative;
+}
+
+.calendar-dark .react-calendar__tile:disabled {
+  color: #475569;
+}
+
+.calendar-dark .react-calendar__tile:enabled:hover,
+.calendar-dark .react-calendar__tile:enabled:focus,
+.calendar-dark .react-calendar__tile--active {
+  background-color: #334155;
+  border-radius: 0.25rem;
+}
+
+.calendar-dark .react-calendar__tile--now {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-radius: 0.25rem;
+}
+
+.calendar-dark .react-calendar__tile--now:enabled:hover,
+.calendar-dark .react-calendar__tile--now:enabled:focus {
+  background-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Task indicators */
+.task-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.task-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Category colors already defined via Tailwind classes in the component */
+
+/* Additional calendar styling */
+.react-calendar {
+  border: none !important;
+  font-family: inherit;
+}
+
+.react-calendar__navigation {
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5rem;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}

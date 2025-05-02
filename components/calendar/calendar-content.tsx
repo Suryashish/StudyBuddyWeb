@@ -210,7 +210,9 @@ export default function CalendarContent() {
               value={value}
               tileContent={tileContent}
               className={`${theme === "dark" ? "calendar-dark" : "calendar-light"} h-full`}
-              view={calView}
+              // The 'view' prop in react-calendar expects "month", "year", "decade", or "century".
+              // If custom week/day views are needed, they require different implementation.
+              // For standard month view, this prop can be omitted or set explicitly to "month".
             />
           </CardContent>
         </Card>

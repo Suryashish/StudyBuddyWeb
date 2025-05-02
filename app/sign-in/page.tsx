@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+
 import {
   Card,
   CardContent,
@@ -14,15 +15,15 @@ import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Correct import for useRouter
-import { useSearchParams } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation';
 import {toast} from 'react-toastify'
 export default function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const URL = process.env.NEXT_PUBLIC_VITE_BE_URL;
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/';
+  // const searchParams = useSearchParams();
+  // const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   const handleLogin = async () => {
     if (!email || !password) {

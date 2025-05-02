@@ -70,7 +70,7 @@ importers:
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       pdf-parse:
         specifier: ^1.1.1
-        version: 1.1.1
+        version: 1.1.1(supports-color@10.0.0)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -86,6 +86,9 @@ importers:
       reactflow:
         specifier: ^11.11.4
         version: 11.11.4(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      supports-color:
+        specifier: ^10.0.0
+        version: 10.0.0
       tailwind-merge:
         specifier: ^3.2.0
         version: 3.2.0
@@ -1403,6 +1406,9 @@ packages:
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
+  proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+
   react-calendar@5.1.0:
     resolution: {integrity: sha512-09o/rQHPZGEi658IXAJtWfra1N69D1eFnuJ3FQm9qUVzlzNnos1+GWgGiUeSs22QOpNm32aoVFOimq0p3Ug9Eg==}
     peerDependencies:
@@ -1412,8 +1418,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-  proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
   react-dom@19.1.0:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
@@ -1514,6 +1518,10 @@ packages:
         optional: true
       babel-plugin-macros:
         optional: true
+
+  supports-color@10.0.0:
+    resolution: {integrity: sha512-HRVVSbCCMbj7/kdWF9Q+bbckjBHLtHMEoJWlkmYzzdwhYMkjkOwubLM6t7NbWKjgKamGDrWL1++KrjUO1t9oAQ==}
+    engines: {node: '>=18'}
 
   tailwind-merge@3.2.0:
     resolution: {integrity: sha512-FQT/OVqCD+7edmmJpsgCsY820RTD5AkBryuG5IUqR5YQZSdj5xlH5nLgH7YPths7WsLPSpSBNneJdM8aS8aeFA==}
@@ -2572,9 +2580,11 @@ snapshots:
       d3-selection: 3.0.0
       d3-transition: 3.0.1(d3-selection@3.0.0)
 
-  debug@3.2.7:
+  debug@3.2.7(supports-color@10.0.0):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 10.0.0
 
   delayed-stream@1.0.0: {}
 
@@ -2834,9 +2844,9 @@ snapshots:
 
   p-defer@1.0.0: {}
 
-  pdf-parse@1.1.1:
+  pdf-parse@1.1.1(supports-color@10.0.0):
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@10.0.0)
       node-ensure: 0.0.0
     transitivePeerDependencies:
       - supports-color
@@ -2857,6 +2867,8 @@ snapshots:
 
   process-nextick-args@2.0.1: {}
 
+  proxy-from-env@1.1.0: {}
+
   react-calendar@5.1.0(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@wojtekmaj/date-utils': 1.5.1
@@ -2867,7 +2879,6 @@ snapshots:
       warning: 4.0.3
     optionalDependencies:
       '@types/react': 19.1.2
-  proxy-from-env@1.1.0: {}
 
   react-dom@19.1.0(react@19.1.0):
     dependencies:
@@ -2987,6 +2998,8 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
+
+  supports-color@10.0.0: {}
 
   tailwind-merge@3.2.0: {}
 

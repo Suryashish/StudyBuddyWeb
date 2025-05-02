@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 const ProfileCompletionForm = () => {
   const params = useParams()
   const { id } = params
-  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL || 'http://localhost:5000'; // Set API URL through env vars
+  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL // Set API URL through env vars
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -70,7 +70,7 @@ const ProfileCompletionForm = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/profile/${id}`, {
+      const response = await fetch(`${URL}/profile/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const ProfileCompletionForm = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 

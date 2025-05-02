@@ -19,7 +19,7 @@ import {toast} from 'react-toastify'
 export default function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL;
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';

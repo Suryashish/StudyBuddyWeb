@@ -35,7 +35,7 @@ interface Task {
   status?: string;
 }
 export function DashboardContent() {
-  const URL = "http://localhost:5000";
+  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL;
 
   const [examDate, setExamDate] = useState('');
   const [subjects, setSubjects] = useState([{ name: '', syllabus: '' }]);
@@ -151,18 +151,19 @@ export function DashboardContent() {
     setIsLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append("examDate", examDate);
-      formData.append("subjects", JSON.stringify(subjects));
-      if (pdfFile) {
-        formData.append("pdfFile", pdfFile);
-      }
-
+      // const formData = new FormData();
+      // formData.append("examDate", examDate);
+      // formData.append("subjects", JSON.stringify(subjects));
+      // // if (pdfFile) {
+      // //   formData.append("pdfFile", pdfFile);
+      // // }
+      const SubjectsArray = JSON.stringify(subjects)
+      console.log(JSON.stringify(subjects))
       setLoading(true); // Show loader
 
-      const response = await axios.post(`${URL}/query/${id}`, formData, {
+      const response = await axios.post(`${URL}/query/${id}`, {examDate, SubjectsArray}, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
 
@@ -273,7 +274,7 @@ export function DashboardContent() {
           <Dialog>
             <DialogTrigger asChild>
               <Button className="bg-orange-500 dark:bg-orange-600 hover:bg-orange-600 dark:hover:bg-orange-700 text-white dark:text-primary-foreground">
-                <Plus className="mr-2 h-4 w-4" /> Start Building
+                <Plus className="mr-2 h-4 w-4" /> Start Session
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">

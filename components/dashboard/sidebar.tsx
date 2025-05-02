@@ -15,7 +15,8 @@ import {
   LineChart,
   Cog,
   DoorOpen,
-  PenBoxIcon
+  PenBoxIcon,
+  Calendar
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -26,7 +27,7 @@ const navItems = [
   { href: '#', label: 'Dashboard', icon: LayoutDashboard, active: true },
   { href: '/blackboard-ai', label: 'Magic Board', icon: PenBoxIcon, active: false },
   { href: '/noded', label: 'Node Visualization', icon: BookOpenText, active: false },
-  // { href: '#', label: 'Analytics', icon: BarChart3, active: false },
+  { href: '/calendar', label: 'Calendar', icon: Calendar, active: false },
   // { href: '#', label: 'Settings', icon: Settings, active: false },
 ];
 const minimalNavIcons = [

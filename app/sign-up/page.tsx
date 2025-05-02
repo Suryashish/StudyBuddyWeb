@@ -21,7 +21,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL || 'http://localhost:5000';
+  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -48,10 +48,11 @@ const SignUpPage = () => {
       if (res.ok) {
         toast.success('Registration successful!');
         localStorage.setItem('user', JSON.stringify(data));
-        router.push(`/profile-fill-up/${data._id}`); // Redirect to profile-fill-up page after signup
+        console.log(data)
       } else {
         toast.error(data.message || 'Registration failed. Please try again.');
       }
+      router.push(`/profile-fill-up/${data._id}`); // Redirect to profile-fill-up page after signup
     } catch (err:any) {
       toast.error(`Registration failed: ${err.message}`);
       console.error('Signup error:', err);

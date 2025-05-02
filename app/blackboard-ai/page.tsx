@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ['latin'] })
 
 const Whiteboard = () => {
-  const URL = process.env.NEXT_PUBLIC_VITE_BE_URL || 'http://localhost:5000';
+  const URL = process.env.NEXT_PUBLIC_VITE_MAGIC_BOARD_BE_URL;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [tool, setTool] = useState("pen");
